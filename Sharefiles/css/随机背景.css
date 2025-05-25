@@ -1,5 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
+    background-color: #000000;
     background-image: url('https://t.alcy.cc/moe');
     background-size: cover; /* 使背景图片覆盖整个容器 */
     margin: 0;
