@@ -1,5 +1,5 @@
 // 完整的 Cloudflare CDN 节点城市映射表
-const cdnLocationMap1 = {
+const cdnLocationMap = {
     // 亚洲
     "HKG": "香港, 中国",
     "TPE": "台北, 中国台湾",
@@ -103,7 +103,7 @@ function detectCDNNode() {
             }
                     
             const coloCode = coloMatch[1];
-            const location = cdnLocationMap1[coloCode] || `节点中文未收录 (${coloCode})`;
+            const location = cdnLocationMap[coloCode] || `节点中文未收录 (${coloCode})`;
                     
             // 更新显示
             cdnElement.textContent = location;
