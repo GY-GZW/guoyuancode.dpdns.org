@@ -70,6 +70,7 @@
 <body>
     <div class="container">
         <h1>404</h1>
+        <p>当前 CDN 节点: <span id="cdn" class="loading">检测中...</span></p>
         <p>哎呀，看起来你迷路了！可能是因为网址输入错误，或者你正在寻找的页面已经不存在。</p>
         <h2>为什么会有这个错误</h2>
         <p>404 not found，是HTTP对网页错误情况返回的一种状态码，当用户在浏览器中输入网址时，服务器会根据输入的地址判断是否有对应的网页信息，如果没有对应信息，说明用户输入的可能是一串无效的链接，服务器就会向用户返回404 not found状态码，告诉用户没有找到对应的网页信息。</p>
@@ -80,5 +81,6 @@
         <a href="javascript:history.back(-1);" class="button">返回上一页（测试）</a>
 
     </div>
+    <script src="/cdn.js"></script>
 </body>
 </html>

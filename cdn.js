@@ -1,7 +1,3 @@
-const acss = "\n  color: #1772F6;\n  font-weight: bold;\n  font-size: 3em;\n  padding: 10px 0;\n  text-shadow: 0.7px 1px 0 rgb(255 255 255 / 100%),\n    1.4px 2px 0 rgb(255 255 255 / 96%),\n    2.1px 3px 0 rgb(255 255 255 / 92%),\n    2.8px 4px 0 rgb(255 255 255 / 88%),\n    1px 1px 2px rgb(100 100 100 / 70%);\n";
-window.console.log("%c果园工作室", acss);
-const bcss = "\n  font-size: 1.2em;\n";
-window.console.log("%c嘿，大傻春，你看NM代码呢🤔，故障了就给我们TM发信息👇\n\n2373460868@qq.com\n\n没事看我们代码肯定TM没安好心", bcss);
 // 完整的 Cloudflare CDN 节点城市映射表
 const cdnLocationMap = {
     // 亚洲
@@ -90,6 +86,7 @@ const cdnLocationMap = {
 
 // 检测 CDN 节点
 function detectCDNNode() {
+    const cdnElement = document.getElementById("cdn");
             
     fetch('/cdn-cgi/trace')
         .then(response => {
@@ -109,11 +106,13 @@ function detectCDNNode() {
             const location = cdnLocationMap[coloCode] || `节点中文未收录 (${coloCode})`;
                     
             // 更新显示
-            window.console.log("\n%c%s", bcss, location);
+            cdnElement.textContent = location;
+            cdnElement.className = "";
         })
         .catch(error => {
-            console.error("\nCDN检测错误:", error);
-            window.console.log("\n%c本地访问 (未检测到CDN)", bcss);
+            console.error("CDN检测错误:", error);
+            cdnElement.textContent = "本地访问 (未检测到CDN)";
+            cdnElement.className = "error";
         });
 }
 
