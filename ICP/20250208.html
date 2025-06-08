@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2b1055, #4a148c);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .moon {
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: #f5f5dc;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #f5f5dc;
+        }
+        
+        .trees {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: url('') no-repeat;
+            background-size: cover;
+        }
+        
+        .container {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            width: 400px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: #e0b0ff;
+        }
+        
+        .info-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 15px;
+        }
+        
+        .info-table td {
+            padding: 8px 0;
+            vertical-align: middle;
+        }
+        
+        .info-table td:first-child {
+            width: 30%;
+            color: #b39ddb;
+            font-weight: bold;
+        }
+        
+        .status {
+            background-color: #1e88e5;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            display: inline-block;
+        }
+    </style>
+    <title>果园ICP备案查询</title>
+</head>
+<body>
+    <div class="moon"></div>
+    <div class="trees"></div>
+    
+    <div class="container">
+        <h1>果园ICP备案查询</h1>
+        
+        <table class="info-table">
+            <tr>
+                <td>网站名称</td>
+                <td>果园工作室副站</td>
+            </tr>
+            <tr>
+                <td>网站类型</td>
+                <td>非盈利，非法人组织网站</td>
+            </tr>
+            <tr>
+                <td>网站服务</td>
+                <td>tv,duckduck镜像,pypi镜像</td>
+            </tr>
+            <tr>
+                <td>管理者</td>
+                <td>上古米歇尔</td>
+            </tr>
+            <tr>
+                <td>更新时间</td>
+                <td>2025-06-08</td>
+            </tr>
+            <tr>
+                <td>状态</td>
+                <td><span class="status">正常</span></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
