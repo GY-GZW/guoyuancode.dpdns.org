@@ -3,287 +3,497 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 视口设置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="果园编程官方副网站，用心每一作，发展每一天，一起加油！">
-    <title>果园编程官方副网站，用心每一作，发展每一天，一起加油！</title>
+    <title>果园编程官方副网站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* 基础样式 */
+        :root {
+            --primary: #121212;
+            --secondary: #1DB954;
+            --accent: #E50914;
+            --light: #1E1E1E;
+            --dark: #000000;
+            --text: #E0E0E0;
+            --text-secondary: #B3B3B3;
+            --success: #1DB954;
+            --warning: #FFA500;
+            --card-bg: rgba(30, 30, 30, 0.85);
+            --button-bg: rgba(29, 185, 84, 0.8);
+        }
+        
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Noto Sans SC', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #000000;
+            color: var(--text);
+            background-color: var(--dark);
             background-image: url('https://t.alcy.cc/pc');
             background-size: cover;
             background-attachment: fixed;
-        }
-        h1 {
-            color: #ffffff;
-        }
-        a {
-            color: #007bff;
+            background-position: center;
+            min-height: 100vh;
         }
 
-            a:hover {
-                text-decoration: none;
-            }
-
-        /* 动画 */
+        /* 全局动画 */
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        h3 {
-            color: #ffffff;
-        }
-        p {
-            color: #ffffff;
-        }
-        /* 按钮样式 */
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background 0.3s;
-            text-align: center;
-            text-decoration: none;
-            font-size: 16px;
-        }
-
-            .button:hover {
-                background: #0056b3;
-                cursor: pointer;
-            }
 
         /* 头部样式 */
         header {
             text-align: center;
-            padding: 20px 0;
-            background-color: rgba(000, 000, 000, 0);
+            padding: 2rem 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.8s ease-out;
         }
 
         .logo img {
-            width: 150px;
+            width: 120px;
             height: auto;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            box-shadow: 0 0 20px rgba(29, 185, 84, 0.5);
+            transition: transform 0.3s;
         }
 
-        /* 团队成员样式 */
-        .team-members {
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 1rem 0 0.5rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(29, 185, 84, 0.5);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin: 0.5rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 按钮容器 */
+        .button-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
-            padding: 40px;
-            background: rgba(0, 0, 0, 0);
+            gap: 1rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            padding: 0 1rem;
         }
-        .team-members h2 {
-            color: #ffffff;
+
+        /* 按钮样式 */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            min-width: 180px;
         }
-        .member {
-            flex: 0 1 240px; /* 响应式成员盒子 */
+
+        .button:hover {
+            background-color: #1ed760;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(29, 185, 84, 0.4);
+        }
+
+        /* 每日好句样式 */
+        .quote-container {
+            background-color: rgba(0, 0, 0, 0.6);
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 10px;
-            background: #ffffff;
-            animation: fadeIn 1s ease-out;
-            text-align: center; /* 成员信息居中 */
+            padding: 1rem;
+            margin: 1.5rem auto;
+            max-width: 800px;
+            border-left: 4px solid var(--secondary);
         }
-        .member p, .member h3 {
-            color: #000000;
+
+        .quote-title {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .member {
-                flex-basis: 100%; /* 在小屏幕上成员信息占满宽度 */
-            }
-            body, html {
-                background-image: url('https://t.alcy.cc/mp');
-            }
+
+        /* 团队成员区域 */
+        .team-members {
+            padding: 3rem 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .team-members h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .team-members h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .member {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            border-color: rgba(29, 185, 84, 0.3);
+        }
+
+        .member h3 {
+            color: var(--secondary);
+            margin-top: 0;
+            font-size: 1.3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+        }
+
+        .member p {
+            color: var(--text);
+            margin: 0.8rem 0;
+            font-size: 0.95rem;
+        }
+
+        .member .button {
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            padding: 0.6rem;
         }
 
         /* 页脚样式 */
         .footer {
-            background-color: #000000;
-            color: #000000;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: var(--text-secondary);
             text-align: center;
-            padding: 20px 0;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-            .footer p {
-                margin: 8px 0;
+        .footer-content {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+            width: 100%;
+        }
+
+        .footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+
+        .footer a:hover {
+            color: #1ed760;
+            text-decoration: underline;
+        }
+
+        .footer img {
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        .loading {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body, html {
+                background-image: url('https://t.alcy.cc/mp');
             }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .button {
+                min-width: 160px;
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="/logo.png" alt="无法获取果园编程的logo，网络可能出现了问题">
+            
         </div>
         <h1>果园编程（原果园工作室）</h1>
         <p>果园编程是一家专注于编程的工作室，目前在CCW（共创世界）发布作品。</p>
         <p>网站已迁移至https://guoyuancode.dpdns.org/home/</p>
-        <p>我们的口号是： 用心每一作，发展每一天。</p>
-        <br>
-        <a href="/rule/" class="button">群规!!快去看!!</a>
-        <a href="/about/" class="button">关于我们</a>
-        <a href="https://guoyuangzs.dpdns.org/" class="button">访问主站</a>
-        <a href="/Download/" class="button">下载站</a>
-        <a href="/AI/" class="button">AI！</a>
-        <a href="/cartoon/" class="button">好看的</a>
-        <a href="/my/" class="button">开发者个人首页</a>
-        <a href="https://pypi.guoyuancode.dpdns.org/" class="button">果园工作室Pypi镜像</a>
-        <a href="/game/" class="button">游戏</a>
-        <a href="/LagrangeBuilder/index.html" class="button">拉格朗日插值法函数构造器</a>
-        <a href="/Sharefiles/" class="button">不会写好看的CSS？那就引用我们的文件</a>
-        <a href="/fw/" class="button">服务</a>
-        <a href="https://server-status.guoyuancode.dpdns.org/" class="button">查看服务器状态</a>
-        <a href="/agreement/" class="button">网站协议</a>
-        <a href="/pingbao/" class="button">果园编程时间屏保</a>
-        <a href="/join/" class="button">加入我们</a>
-        <a href="/so/" class="button">果园搜索</a>
-        <a href="/dabao/" class="button">scratch作品打包机</a>
-        <a href="/tipping/" class="button">果园打赏</a>
-        <a href="javascript:history.back(-1);" class="button">返回上一页</a>
-        <p>
-            每日好句（使用一言（不是文心一言））API：
+        <p>我们的口号是：用心每一作，发展每一天。</p>
+        
+        <div class="quote-container">
+            <div class="quote-title">每日好句（使用一言API）</div>
             <script src="https://api.gumengya.com/Api/YiYan?format=js" type="text/javascript"></script>
-        <p>
-        <p>
-            每日好句（使用果园的测试API）：
+        </div>
+        
+        <div class="quote-container">
+            <div class="quote-title">每日好句（使用果园测试API）</div>
             <script src="https://api.gumengya.com/Api/WaSentence?format=js" type="text/javascript"></script>
-        <p>
-        <p> <p>
+        </div>
+        
+        <div class="button-container">
+            <a href="/rule/" class="button">群规!!快去看!!</a>
+            <a href="/about/" class="button">关于我们</a>
+            <a href="https://guoyuangzs.dpdns.org/" class="button">访问主站</a>
+            <a href="/Download/" class="button">下载站</a>
+            <a href="/AI/" class="button">AI！</a>
+            <a href="/cartoon/" class="button">好看的</a>
+            <a href="/my/" class="button">开发者个人首页</a>
+            <a href="https://pypi.guoyuancode.dpdns.org/" class="button">PyPI镜像</a>
+            <a href="/game/" class="button">游戏</a>
+            <a href="/LagrangeBuilder/index.html" class="button">拉格朗日插值法</a>
+            <a href="/Sharefiles/" class="button">CSS资源</a>
+            <a href="/fw/" class="button">服务</a>
+            <a href="https://server-status.guoyuancode.dpdns.org/" class="button">服务器状态</a>
+            <a href="/agreement/" class="button">网站协议</a>
+            <a href="/pingbao/" class="button">时间屏保</a>
+            <a href="/join/" class="button">加入我们</a>
+            <a href="/so/" class="button">果园搜索</a>
+            <a href="/dabao/" class="button">Scratch打包机</a>
+            <a href="/tipping/" class="button">果园打赏</a>
+            <a href="javascript:history.back(-1);" class="button">返回上一页</a>
+        </div>
     </header>
+    
     <section class="team-members">
         <h2>团队成员</h2>
-        <div class="member">
-            <h3>果园</h3>
-            <p>CCWID: 196543819</p>
-            <p>个人简介：室长，会AI、Python、Scratch</p>
-            <p>个性签名：且视他人之凝目如盏盏鬼火，大胆的走你的夜路</p>
-            <a href="https://www.ccw.site/student/61ef9efe4449842875d8f7fe" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>IW大使</h3>
-            <p>CCWID: 242979307</p>
-            <p>个人简介：副室长，高中生、一个IW玩家、精通scratch</p>
-            <p>个性签名：一个普通iwanna玩家，仅此而已。</p>
-            <a href="https://www.ccw.site/student/6361f00a03ed5b41b82d4cce" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>上古米歇尔</h3>
-            <p>CCWID: 236339606</p>
-            <p>个人简介：迷你玩家，会C++、汇编，懂电脑</p>
-            <p>个性签名：母牛大使</p>
-            <a href="https://www.ccw.site/student/627e031a5061e01d8dd6d4d5" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>南翔</h3>
-            <p>CCWID: 244841612</p>
-            <p>个人简介：一个喜欢做Windows，但是不懂Windows的人</p>
-            <p>个性签名：心若有所向往，何惧道阻且长</p>
-            <a href="https://www.ccw.site/student/63d373e97353890bfcc808b0" class="button">个人页面</a>
-             </div>
-        <div class="member">
-            <h3>禾几十</h3>
-            <p>QQ：2655406519</p>
-            <p>个人简介：果园的同学，喜欢玩《萤火突击》、懂一点历史</p>
-            <p>个性签名：家在身后，世界在前</p>
+        <div class="members-grid">
+            <!-- 果园 -->
+            <div class="member">
+                <h3>果园</h3>
+                <p><strong>CCWID:</strong> 196543819</p>
+                <p><strong>个人简介:</strong> 室长，会AI、Python、Scratch</p>
+                <p><strong>个性签名:</strong> 且视他人之凝目如盏盏鬼火，大胆的走你的夜路</p>
+                <a href="https://www.ccw.site/student/61ef9efe4449842875d8f7fe" class="button">个人页面</a>
             </div>
-        <div class="member">
-            <h3>yynna！！！</h3>
-            <p>QQ：2177752974</p>
-            <p>个人简介：果园的同学，对历史和科技感兴趣，对电脑不太懂，但是会操作</p>
-            <p>个性签名：Sieg Heil！！！</p>
-        </div>
-        <div class="member">
-            <h3>果园工作室人员</h3>
-            <p>QQ：1796431249</p>
-            <p>个人简介：上古米歇尔的同学</p>
-            <p>个性签名：暂无</p>
-        </div>
-        <div class="member">
-            <h3>极地蛟龙</h3>
-            <p>CCWID: 246191199</p>
-            <p>个人简介：一起肝作品的，新手</p>
-            <p>个性签名：暂时没有</p>
-            <a href="https://www.ccw.site/student/640418ef9bc4085396341997" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>兴儿-小兴兴仔</h3>
-            <p>QQ:1272372507</p>
-            <p>CCWID:244339023</p>
-            <p>个人简介:一位平平无奇的但热爱创作的小学生</p>
-            <p>个性签名:破釜沉舟</p>
-            <a href="https://www.ccw.site/student/63c782a56858e60efb0eab53" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>编程程序玩家</h3>
-            <p>CCWID: 236456039</p>
-            <p>个人简介：和果园不怎么交往，但是依然有深厚的友谊</p>
-            <p>个性签名：暂时没有</p>
-            <a href="https://www.ccw.site/student/627114fd7780c01e7a3eda6f" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>永青工作室</h3>
-            <p>CCWID: 241334262</p>
-            <p>个人简介：因为学业，但是我们在等他！</p>
-            <p>个性签名：暂时没有</p>
-            <a href="https://www.ccw.site/student/633ad1affe74357739ce8c4a" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>ljc</h3>
-            <p>CCWID: 248561390</p>
-            <p>个人简介：果园的同学，刚学C++，会Python，喜欢把国外的作品搞来，这点果园对此很不满</p>
-            <p>个性签名：人生如戏，全靠演技</p>
-            <a href="https://www.ccw.site/student/64675d47681a9d18b26d5f34" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>XRC 我托马莱依拉</h3>
-            <p>CCWID: 237394302</p>
-            <p>个人简介：在HBC认识的xrc</p>
-            <p>个性签名：原神，启动！</p>
-            <a href="https://www.ccw.site/student/62a576ba4de28e738ab45d6a" class="button">个人页面</a>
-        </div>
-        <div class="member">
-            <h3>悦悦（线下）</h3>
-            <p>QQ：3102920598</p>
-            <p>个人简介：果园的表妹，追星族，喜欢成毅</p>
-            <p>个性签名：万水千山，你愿意陪我一起看吗</p>
-        </div>
-        <div class="member">
-            <h3>乐乐（线下）</h3>
-            <p>果园暂时没有她的个人信息</p>
-            <p>个人简介：果园的表妹，现在和果园在一个学校</p>
-            <p>个性签名：暂时没有</p>
+            
+            <!-- IW大使 -->
+            <div class="member">
+                <h3>IW大使</h3>
+                <p><strong>CCWID:</strong> 242979307</p>
+                <p><strong>个人简介:</strong> 副室长，高中生、一个IW玩家、精通scratch</p>
+                <p><strong>个性签名:</strong> 一个普通iwanna玩家，仅此而已。</p>
+                <a href="https://www.ccw.site/student/6361f00a03ed5b41b82d4cce" class="button">个人页面</a>
+            </div>
+            
+            <!-- 上古米歇尔 -->
+            <div class="member">
+                <h3>上古米歇尔</h3>
+                <p><strong>CCWID:</strong> 236339606</p>
+                <p><strong>个人简介:</strong> 迷你玩家，会C++、汇编，懂电脑</p>
+                <p><strong>个性签名:</strong> 母牛大使</p>
+                <a href="https://www.ccw.site/student/627e031a5061e01d8dd6d4d5" class="button">个人页面</a>
+            </div>
+            
+            <!-- 南翔 -->
+            <div class="member">
+                <h3>南翔</h3>
+                <p><strong>CCWID:</strong> 244841612</p>
+                <p><strong>个人简介:</strong> 一个喜欢做Windows，但是不懂Windows的人</p>
+                <p><strong>个性签名:</strong> 心若有所向往，何惧道阻且长</p>
+                <a href="https://www.ccw.site/student/63d373e97353890bfcc808b0" class="button">个人页面</a>
+            </div>
+            
+            <!-- 禾几十 -->
+            <div class="member">
+                <h3>禾几十</h3>
+                <p><strong>QQ:</strong> 2655406519</p>
+                <p><strong>个人简介:</strong> 果园的同学，喜欢玩《萤火突击》、懂一点历史</p>
+                <p><strong>个性签名:</strong> 家在身后，世界在前</p>
+            </div>
+            
+            <!-- yynna！！！ -->
+            <div class="member">
+                <h3>yynna！！！</h3>
+                <p><strong>QQ:</strong> 2177752974</p>
+                <p><strong>个人简介:</strong> 果园的同学，对历史和科技感兴趣，对电脑不太懂，但是会操作</p>
+                <p><strong>个性签名:</strong> Sieg Heil！！！</p>
+            </div>
+            
+            <!-- 果园工作室人员 -->
+            <div class="member">
+                <h3>果园工作室人员</h3>
+                <p><strong>QQ:</strong> 1796431249</p>
+                <p><strong>个人简介:</strong> 上古米歇尔的同学</p>
+                <p><strong>个性签名:</strong> 暂无</p>
+            </div>
+            
+            <!-- 极地蛟龙 -->
+            <div class="member">
+                <h3>极地蛟龙</h3>
+                <p><strong>CCWID:</strong> 246191199</p>
+                <p><strong>个人简介:</strong> 一起肝作品的，新手</p>
+                <p><strong>个性签名:</strong> 暂时没有</p>
+                <a href="https://www.ccw.site/student/640418ef9bc4085396341997" class="button">个人页面</a>
+            </div>
+            
+            <!-- 兴儿-小兴兴仔 -->
+            <div class="member">
+                <h3>兴儿-小兴兴仔</h3>
+                <p><strong>QQ:</strong> 1272372507</p>
+                <p><strong>CCWID:</strong> 244339023</p>
+                <p><strong>个人简介:</strong> 一位平平无奇的但热爱创作的小学生</p>
+                <p><strong>个性签名:</strong> 破釜沉舟</p>
+                <a href="https://www.ccw.site/student/63c782a56858e60efb0eab53" class="button">个人页面</a>
+            </div>
+            
+            <!-- 编程程序玩家 -->
+            <div class="member">
+                <h3>编程程序玩家</h3>
+                <p><strong>CCWID:</strong> 236456039</p>
+                <p><strong>个人简介:</strong> 和果园不怎么交往，但是依然有深厚的友谊</p>
+                <p><strong>个性签名:</strong> 暂时没有</p>
+                <a href="https://www.ccw.site/student/627114fd7780c01e7a3eda6f" class="button">个人页面</a>
+            </div>
+            
+            <!-- 永青工作室 -->
+            <div class="member">
+                <h3>永青工作室</h3>
+                <p><strong>CCWID:</strong> 241334262</p>
+                <p><strong>个人简介:</strong> 因为学业，但是我们在等他！</p>
+                <p><strong>个性签名:</strong> 暂时没有</p>
+                <a href="https://www.ccw.site/student/633ad1affe74357739ce8c4a" class="button">个人页面</a>
+            </div>
+            
+            <!-- ljc -->
+            <div class="member">
+                <h3>ljc</h3>
+                <p><strong>CCWID:</strong> 248561390</p>
+                <p><strong>个人简介:</strong> 果园的同学，刚学C++，会Python，喜欢把国外的作品搞来，这点果园对此很不满</p>
+                <p><strong>个性签名:</strong> 人生如戏，全靠演技</p>
+                <a href="https://www.ccw.site/student/64675d47681a9d18b26d5f34" class="button">个人页面</a>
+            </div>
+            
+            <!-- XRC 我托马莱依拉 -->
+            <div class="member">
+                <h3>XRC 我托马莱依拉</h3>
+                <p><strong>CCWID:</strong> 237394302</p>
+                <p><strong>个人简介:</strong> 在HBC认识的xrc</p>
+                <p><strong>个性签名:</strong> 原神，启动！</p>
+                <a href="https://www.ccw.site/student/62a576ba4de28e738ab45d6a" class="button">个人页面</a>
+            </div>
+            
+            <!-- 悦悦（线下） -->
+            <div class="member">
+                <h3>悦悦（线下）</h3>
+                <p><strong>QQ:</strong> 3102920598</p>
+                <p><strong>个人简介:</strong> 果园的表妹，追星族，喜欢成毅</p>
+                <p><strong>个性签名:</strong> 万水千山，你愿意陪我一起看吗</p>
+            </div>
+            
+            <!-- 乐乐（线下） -->
+            <div class="member">
+                <h3>乐乐（线下）</h3>
+                <p><strong>果园暂时没有她的个人信息</strong></p>
+                <p><strong>个人简介:</strong> 果园的表妹，现在和果园在一个学校</p>
+                <p><strong>个性签名:</strong> 暂时没有</p>
+            </div>
         </div>
     </section>
-    <!-- 其他成员信息按照以上格式添加 -->
+    
     <footer class="footer">
-        <div>
-            <p><a href="https://ipw.cn/ssl/?site=guoyuancode.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a> | <a href="https://ipw.cn/ipv6webcheck/?site=guoyuancode.dpdns.org" title="本站支持IPv6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a></p>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://ipw.cn/ssl/?site=guoyuancode.dpdns.org" title="本站支持SSL安全访问" target='_blank'>
+                    
+                </a>
+                <span>|</span>
+                <a href="https://ipw.cn/ipv6webcheck/?site=guoyuancode.dpdns.org" title="本站支持IPv6访问" target='_blank'>
+                    
+                </a>
+            </div>
             <p><a href="https://guoyuancode.dpdns.org/ICP/20250208.html" target="_blank">果园ICP备20250208号</a></p>
             <p>本网站的背景图片为栗次元API-举个栗子二次元图床</p> 
             <p>站长：上古米歇尔-果园-FD-工作，测试：GZW</p>
-            <p>副站可能与主站更新不同步，副站站管理者：上古米歇尔-果园-FD-工作<p>
-            <p>上古米歇尔-果园-FD-工作 QQ号:2373460868          果园 QQ号:386498317     果园编程QQ群：749914521</p>
+            <p>副站可能与主站更新不同步，副站站管理者：上古米歇尔-果园-FD-工作</p>
+            <p>
+                上古米歇尔-果园-FD-工作 QQ号:2373460868 | 
+                果园 QQ号:386498317 | 
+                果园编程QQ群：749914521
+            </p>
             <p>当前 CDN 节点: <span id="cdn" class="loading">检测中...</span></p>
         </div>
     </footer>
+    
     <script src="/caidan.js"></script>
     <script src="/cdn.js"></script>
 </body>

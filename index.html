@@ -1,111 +1,400 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-    <meta name="description" content="果园编程副站广告">
+    <meta name="description" content="果园编程副站 - 专业编程资源与工具">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>果园编程副站</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #121212;
+            --secondary: #1DB954;
+            --accent: #E50914;
+            --light: #1E1E1E;
+            --dark: #000000;
+            --text: #E0E0E0;
+            --text-secondary: #B3B3B3;
+            --success: #1DB954;
+            --warning: #FFA500;
+            --card-bg: #1E1E1E;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Noto Sans SC', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #000000 100%);
+            color: white;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 20px;
-            background-color: black;
-            color: white;
+            margin-bottom: 1rem;
         }
-
-        h2 {
-            color: white;
-            margin-bottom: 20px;
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid var(--secondary);
+            box-shadow: 0 4px 20px rgba(29, 185, 84, 0.3);
         }
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #4CAF50;
+        
+        h1 {
+            font-size: 2.5rem;
+            margin: 0.5rem 0;
+            font-weight: 700;
             color: white;
+            text-shadow: 0 2px 10px rgba(29, 185, 84, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        .mission {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem auto;
+            max-width: 800px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .mission p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            color: var(--text);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+            border-color: var(--secondary);
+        }
+        
+        .badge img {
+            margin-right: 0.5rem;
+            height: 20px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
             border: none;
-            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-
-            button:hover {
-                background-color: #45a049;
-            }
-        /* 广告容器样式 */
+        
+        .btn-primary {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #333;
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: #1ed760;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #444;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .content-section {
+            margin: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
         .ad-container {
-            border: 2px solid #FFA500;
-            padding: 20px;
-            margin-top: 30px;
-            width: 100%;
-            max-width: 400px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .ad-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+        }
+        
+        .ad-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .ad-game {
+            background: linear-gradient(135deg, #121212 0%, #1E1E1E 100%);
+            color: white;
+            border: 1px solid var(--secondary);
+        }
+        
+        .ad-game .ad-title {
+            color: var(--secondary);
             text-align: center;
         }
-
-        /* 广告链接样式 */
-        .ad-container a {
-            color: #FFA500;
+        
+        .ad-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(to right, var(--secondary), #1ed760);
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
             text-decoration: none;
+            transition: all 0.3s;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
         }
-
-        /* 广告链接悬停样式 */
-        .ad-container a:hover {
-            text-decoration: underline;
+        
+        .ad-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(29, 185, 84, 0.5);
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            justify-content: center;
+        }
+        
+        .tag {
+            background-color: rgba(29, 185, 84, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(29, 185, 84, 0.3);
+            color: var(--secondary);
+        }
+        
+        .stats {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-secondary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: var(--primary);
+            color: var(--text-secondary);
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .cdn-info {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .loading {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div style="display: flex;justify-content: center;align-items: center;"></div>
-        <img src="/logo.png" alt="果园星球LOGO" width="200" height="200">
-        <h1><marquee>果园编程（原果园工作室）</marquee></h1>
-        <h2 style="color: red;">我们不受任何个人或组织控制，我们不接受任何形式的任何合作</h2>
-        <h2 style="color: red;">我们是非营利组织，一切捐赠全部自愿，我们不会接受任何贿赂，抵制一切黄，人肉搜索，赌博，八卦</h2>
-        <a href="https://ipw.cn/ssl/?site=guoyuancode.dpdns.org" title="本站支持SSL安全访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持SSL安全访问" src="https://static.ipw.cn/icon/ssl-s1.svg"></a>
-        <a href="https://ipw.cn/ipv6webcheck/?site=guoyuancode.dpdns.org" title="本站支持IPv6访问" target='_blank'><img style='display:inline-block;vertical-align:middle' alt="本站支持IPv6访问" src="https://static.ipw.cn/icon/ipv6-s1.svg"></a>
-        <a href="https://www.abuseipdb.com/user/215069" title="AbuseIPDB is an IP address blacklist for webmasters and sysadmins to report IP addresses engaging in abusive behavior on their networks"><img src="https://www.abuseipdb.com/contributor/215069.svg" alt="AbuseIPDB Contributor Badge" style="width: 405px;border-radius: 5px;border-top: 5px solid #058403;border-right: 5px solid #111;border-bottom: 5px solid #111;border-left: 5px solid #058403;padding: 5px;background: #35c246 linear-gradient(rgba(255,255,255,0), rgba(255,255,255,.3) 50%, rgba(0,0,0,.2) 51%, rgba(0,0,0,0));padding: 5px;box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, .2);"></a>
-        <a href="https://guoyuancode.dpdns.org/ICP/20250208.html" target="_blank">果园ICP备20250208号</a>
-        <button onclick="window.location.href = 'https://guoyuancode.dpdns.org/home/'">进入网站</button>
-        <button onclick="window.location.href = 'https://search.guoyuancode.dpdns.org/'">果园工作室duckduckgo镜像</button>
-        <button onclick="window.location.href = 'https://pypi.guoyuancode.dpdns.org/'">果园工作室Pypi镜像</button>
-        <button onclick="window.location.href = 'https://server-status.guoyuancode.dpdns.org/'">查看服务器状态</button>
-        <p>当前 CDN 节点: <span id="cdn" class="loading">检测中...</span></p>
-        <!-- 广告区域1 -->
-        <div class="ad-container" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-color: #4CAF50; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
-            <div class="ad-title" style="font-size: 1.5em; font-weight: bold; color: #FFD700; margin-bottom: 15px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-                🎮 晨曦-Amo的岛屿世界 🏝️
-            </div>
-            <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 15px;">
-                邪恶博士将你囚禁在神秘小岛！通过解谜跑酷冲破枷锁，赢得最终自由！
-                <br>（内测版本现已开放体验）
-            </p>
-            <div style="margin: 15px 0;">
-                <span style="display: inline-block; background-color: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 20px; margin: 5px; font-size: 0.9em;">🏆 精美2D画面</span>
-                <span style="display: inline-block; background-color: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 20px; margin: 5px; font-size: 0.9em;">🎯 刺激关卡设计</span>
-                <span style="display: inline-block; background-color: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 20px; margin: 5px; font-size: 0.9em;">💎 丰富收集要素</span>
-            </div>
-            <a href="https://ccw.site/s/2w1LJ" class="ad-link" target="_blank" style="display: inline-block; padding: 12px 30px; background: linear-gradient(to right, #FFD700, #FFA500); color: #1a1a1a; font-weight: bold; border-radius: 30px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);">
-                立即免费试玩 ➔
+    <header>
+        <div class="logo-container">
+            
+        </div>
+        <h1>果园编程</h1>
+        <div class="tagline">专业编程资源与工具平台</div>
+        
+        <div class="mission">
+            <p>我们是非营利组织，致力于提供优质的编程资源</p>
+            <p>一切捐赠自愿，抵制不良内容，维护纯净技术环境</p>
+        </div>
+        
+        <div class="badges">
+            <a href="https://ipw.cn/ssl/?site=guoyuancode.dpdns.org" class="badge" target="_blank" title="SSL安全访问">
+                 SSL安全
             </a>
-            <div style="margin-top: 15px; font-size: 0.8em; color: rgba(255,255,255,0.7);">
-                ⭐ 已有300+玩家加入冒险！
+            <a href="https://ipw.cn/ipv6webcheck/?site=guoyuancode.dpdns.org" class="badge" target="_blank" title="IPv6访问">
+                 IPv6支持
+            </a>
+            <a href="https://www.abuseipdb.com/user/215069" class="badge" target="_blank" title="AbuseIPDB贡献者">
+                 网络安全贡献者
+            </a>
+            <a href="https://guoyuancode.dpdns.org/ICP/20250208.html" class="badge" target="_blank">
+                果园ICP备20250208号
+            </a>
+            <a href="https://tv.guoyuancode.dpdns.org/player?id=20550&source=tyyszy&url=https%3A%2F%2Ftyyszywvod5.com%2Fvideos%2F202501%2F16%2F678824a224f068e79f1e0eab%2Fc0176f%2Findex.m3u8&index=0&title=%E8%A2%AB%E6%88%91%E5%BC%84%E4%B8%A2%E7%9A%84%E4%BD%A0&returnUrl=https%253A%252F%252Ftv.guoyuancode.dpdns.org%252Fs%253D%2525E8%2525A2%2525AB%2525E6%252588%252591%2525E5%2525BC%252584%2525E4%2525B8%2525A2%2525E7%25259A%252584%2525E4%2525BD%2525A0" class="badge" target="_blank">
+                button
+            </a>
+        </div>
+        
+        <div class="actions">
+            <a href="https://guoyuancode.dpdns.org/home/" class="btn btn-primary">进入网站</a>
+            <a href="https://search.guoyuancode.dpdns.org/" class="btn btn-secondary">DuckDuckGo镜像</a>
+            <a href="https://pypi.guoyuancode.dpdns.org/" class="btn btn-outline">PyPI镜像</a>
+            <a href="https://server-status.guoyuancode.dpdns.org/" class="btn btn-outline">服务器状态</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content-section">
+            <h2 class="section-title">精选推荐</h2>
+            
+            <!-- 游戏广告 -->
+            <div class="ad-container ad-game">
+                <div class="ad-title">🎮 晨曦-Amo的岛屿世界 🏝️</div>
+                <p>邪恶博士将你囚禁在神秘小岛！通过解谜跑酷冲破枷锁，赢得最终自由！</p>
+                <p>（内测版本现已开放体验）</p>
+                
+                <div class="tags">
+                    <span class="tag">🏆 精美2D画面</span>
+                    <span class="tag">🎯 刺激关卡设计</span>
+                    <span class="tag">💎 丰富收集要素</span>
+                </div>
+                
+                <a href="https://ccw.site/s/2w1LJ" class="ad-link" target="_blank">立即免费试玩 →</a>
+                
+                <div class="stats">⭐⭐ 已有300+玩家加入冒险！</div>
+            </div>
+            
+            <!-- PyPI镜像广告 -->
+            <div class="ad-container">
+                <h3 class="ad-title">果园PyPI镜像站</h3>
+                <p>果园编程工作室携全新 PyPI 镜像闪亮登场！比原版 PyPI 访问速度更快，更新更及时。</p>
+                <p>依托小黄云 works 反代理技术，速度与更新皆有坚实保障。同时支持 IPv6 和 IPv4 解析，凭借小黄云 ANYCAST 泛播技术及 130+ 泛播节点，无论您身处国内还是国外，都能享受稳定快速的服务。</p>
+                <p>所有 Python 库上传即刻可用，无需等待同步时间。我们的 PyPI 共有 3TB 数据，将为您提供更及时、更快的服务体验，开启高效编程新征程！</p>
+                
+                <a href="https://pypi.guoyuancode.dpdns.org/" class="btn btn-primary" target="_blank">访问PyPI镜像</a>
             </div>
         </div>
-        <!-- 广告区域2 -->
-        <div class="ad-container">
-            <div class="ad-title">果园工作室Pypi 镜像！！</div>
-            <p>果园编程工作室携全新 Pypi 镜像闪亮登场！</p>
-            <p>比原版 Pypi 访问速度更快，相较于清华，更新间隔更短，与阿里相比，访问量更小。</p>
-            <p>依托小黄云 works 反代理技术，速度与更新皆有坚实保障。</p>
-            <p>同时支持 IPv6 和 IPv4 解析，凭借小黄云 ANYCAST 泛播技术及 130 + 泛播节点，无论您身处国内还是国外，都能享受稳定快速的服务。</p>
-            <p>所有 Python 库上传即刻可用，无需再等待清华 5 分钟的同步时间。</p>
-            <p>而且，我们的 Pypi 共有 3TB 数据，将为您提供更及时、更快的服务体验，开启高效编程新征程！</p>
-            <p>快来体验吧！</p>
-            <a href="https://pypi.guoyuancode.dpdns.org/" class="ad-link" target="_blank">立即查看</a>
+        
+        <div class="cdn-info">
+            <p>当前 CDN 节点: <span id="cdn" class="loading">检测中...</span></p>
         </div>
-        <button onclick="window.location.href = 'https://tv.guoyuancode.dpdns.org/player?id=20550&source=tyyszy&url=https%3A%2F%2Ftyyszywvod5.com%2Fvideos%2F202501%2F16%2F678824a224f068e79f1e0eab%2Fc0176f%2Findex.m3u8&index=0&title=%E8%A2%AB%E6%88%91%E5%BC%84%E4%B8%A2%E7%9A%84%E4%BD%A0&returnUrl=https%253A%252F%252Ftv.guoyuancode.dpdns.org%252Fs%253D%2525E8%2525A2%2525AB%2525E6%252588%252591%2525E5%2525BC%252584%2525E4%2525B8%2525A2%2525E7%25259A%252584%2525E4%2525BD%2525A0'">button</button>
     </div>
+    
+    <footer>
+        <p>© 2025 果园编程 - 保留所有权利</p>
+        <p>我们不受任何个人或组织控制，不接受任何形式的合作</p>
+    </footer>
+    
     <script src="/caidan.js"></script>
     <script src="/cdn.js"></script>
     <script src="https://api.ilingku.com/int/v1/xuehua" data-time="60"></script>
