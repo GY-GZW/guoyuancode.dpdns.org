@@ -18,7 +18,7 @@
             --text-secondary: #B3B3B3;
             --success: #1DB954;
             --warning: #FFA500;
-            --card-bg: rgba(30, 30, 30, 0.7); /* 降低卡片不透明度 */
+            --card-bg: rgba(30, 30, 30, 0); /* 完全透明 */
             --button-bg: rgba(29, 185, 84, 0.8);
         }
         
@@ -48,11 +48,11 @@
             }
         }
 
-        /* 头部样式 */
+        /* 头部样式 - 保持不透明 */
         header {
             text-align: center;
             padding: 2rem 0;
-            background-color: rgba(0, 0, 0, 0.5); /* 降低头部遮罩不透明度 */
+            background-color: rgba(0, 0, 0, 0.7); /* 不透明 */
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             animation: fadeIn 0.8s ease-out;
@@ -122,9 +122,9 @@
             box-shadow: 0 6px 15px rgba(29, 185, 84, 0.4);
         }
 
-        /* 每日好句样式 */
+        /* 每日好句样式 - 完全透明 */
         .quote-container {
-            background-color: rgba(0, 0, 0, 0.5); /* 降低不透明度 */
+            background-color: transparent; /* 完全透明 */
             border-radius: 10px;
             padding: 1rem;
             margin: 1.5rem auto;
@@ -138,13 +138,16 @@
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            background-color: rgba(0, 0, 0, 0.5); /* 仅标题有背景 */
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
         }
 
-        /* 团队成员区域 */
+        /* 团队成员区域 - 完全透明 */
         .team-members {
             padding: 3rem 1rem;
-            background-color: rgba(0, 0, 0, 0.6); /* 降低不透明度 */
-            backdrop-filter: blur(5px);
+            background-color: transparent; /* 完全透明 */
         }
 
         .team-members h2 {
@@ -154,6 +157,10 @@
             margin-bottom: 2rem;
             position: relative;
             padding-bottom: 1rem;
+            background-color: rgba(0, 0, 0, 0.5); /* 仅标题有背景 */
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
         }
 
         .team-members h2::after {
@@ -176,7 +183,7 @@
         }
 
         .member {
-            background-color: var(--card-bg);
+            background-color: rgba(30, 30, 30, 0.7); /* 卡片保持半透明 */
             border-radius: 10px;
             padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -212,7 +219,7 @@
             padding: 0.6rem;
         }
 
-        /* 页脚样式 - 重点优化部分 */
+        /* 页脚样式 - 保持不透明 */
         .footer {
             background-color: rgba(0, 0, 0, 0.7);
             color: var(--text-secondary);
@@ -343,17 +350,15 @@
         
         <div class="button-container">
             <a href="/rule/" class="button">群规!!快去看!!</a>
-            <a href="/about/" class="button">关于我们</a>
             <a href="https://guoyuangzs.dpdns.org/" class="button">访问主站</a>
             <a href="/Download/" class="button">下载站</a>
             <a href="/AI/" class="button">AI！</a>
             <a href="/cartoon/" class="button">好看的</a>
             <a href="/my/" class="button">开发者个人首页</a>
-            <a href="https://pypi.guoyuancode.dpdns.org/" class="button">PyPI镜像</a>
             <a href="/game/" class="button">游戏</a>
             <a href="/LagrangeBuilder/index.html" class="button">拉格朗日插值法</a>
-            <a href="/Sharefiles/" class="button">CSS,JS调用文档</a>
-            <a href="/fw/" class="button">服务</a>
+            <a href="https://tv.guoyuancode.dpdns.org/" class="button">电视（仅限站主自己使用）</a>
+            <a href="https://pypi.guoyuancode.dpdns.org/" class="button">PyPI镜像</a>
             <a href="https://server-status.guoyuancode.dpdns.org/" class="button">服务器状态</a>
             <a href="/agreement/" class="button">网站协议</a>
             <a href="/pingbao/" class="button">时间屏保</a>

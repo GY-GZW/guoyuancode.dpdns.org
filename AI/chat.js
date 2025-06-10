@@ -31,7 +31,7 @@ const messageInput = document.getElementById('messageInput');
 const apiSelector = document.getElementById('apiSelector');
 const sendMessageButton = document.getElementById('sendMessage');
 const clearChatButton = document.getElementById('clearChat');
-const stopGeneratingButton = document.getElementById('stopGenerating');
+//const stopGeneratingButton = document.getElementById('stopGenerating');
 
 // 工具函数区域：提取通用功能
 function escapeHtml(text) {
@@ -85,7 +85,7 @@ class ChatManager {
         sendMessageButton.addEventListener('click', () => this.sendMessage());
         messageInput.addEventListener('keypress', e => e.key === 'Enter' && this.sendMessage());
         clearChatButton.addEventListener('click', () => this.clearChat());
-        stopGeneratingButton.addEventListener('click', () => this.stopGenerating());
+        //stopGeneratingButton.addEventListener('click', () => this.stopGenerating());
     }
 
     async sendMessage() {
@@ -220,13 +220,13 @@ class ChatManager {
         chatHistory = [chatHistory[0]]; // 保留系统初始化消息
     }
 
-    stopGenerating() {
+    /*stopGenerating() {
         // 中止当前生成
         if (this.abortController) {
             this.abortController.abort();
             appendMessage('生成已停止', 'ai-message');
         }
-    }
+    }*/
 }
 
 // 初始化应用
