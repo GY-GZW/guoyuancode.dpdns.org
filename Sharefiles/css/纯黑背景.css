@@ -1,51 +1,59 @@
-/* 基础样式 */
+/* /Sharefiles/css/随机背景.css */
+/* 基础样式 - 与主站完全一致 */
 :root {
     --primary: #121212;
     --secondary: #1DB954;
+    --accent: #E50914;
+    --light: #1E1E1E;
+    --dark: #000000;
     --text: #E0E0E0;
-    --card-bg: rgba(30, 30, 30, 0.8);
+    --text-secondary: #B3B3B3;
+    --success: #1DB954;
+    --warning: #FFA500;
+    --card-bg: rgba(30, 30, 30, 0.7);
+    --button-bg: rgba(29, 185, 84, 0.8);
 }
 
-body {
-    font-family: 'Noto Sans SC', sans-serif;
-    background-color: #000;
-    color: var(--text);
+body, html {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    font-family: 'Noto Sans SC', sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--dark);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
 }
 
-/* 统一容器样式 - 所有页面通用 */
+/* 容器样式 - 保持半透明黑色背景 */
 .container {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
     background: var(--card-bg);
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    padding: 30px;
-    border: 1px solid rgba(255,255,255,0.1);
-    text-align: center;
-    
-    /* 灵活宽度 - 根据内容自动调整 */
-    width: auto;
-    max-width: 90%;
-    min-width: 300px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* 标题样式 - 所有页面通用 */
+/* 标题样式 */
 h1 {
     color: var(--secondary);
-    text-align: center;
-    margin-bottom: 30px;
     font-size: 2.2em;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
     position: relative;
+    padding-bottom: 15px;
+    text-align: center;
 }
 
 h1::after {
     content: "";
     position: absolute;
-    bottom: -10px;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
@@ -53,20 +61,19 @@ h1::after {
     background: var(--secondary);
 }
 
-/* 统一按钮组样式 - 所有页面通用 */
+/* 按钮组样式 */
 .button-group {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    max-width: 300px;
     margin: 0 auto;
-    max-width: 400px;
 }
 
-/* 按钮样式 - 所有页面通用 */
 .button {
     display: block;
-    padding: 12px 25px;
-    background: rgba(29, 185, 84, 0.8);
+    padding: 12px 0;
+    background: var(--button-bg);
     color: white;
     border: none;
     border-radius: 50px;
@@ -75,7 +82,7 @@ h1::after {
     text-decoration: none;
     transition: all 0.3s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
+    text-align: center;
 }
 
 .button:hover {
@@ -84,23 +91,18 @@ h1::after {
     box-shadow: 0 6px 15px rgba(29, 185, 84, 0.4);
 }
 
-/* 响应式设计 - 平板和桌面 */
-@media (min-width: 768px) {
+/* 移动端响应式设计 */
+@media (max-width: 768px) {
     .container {
-        width: 80%;
-        max-width: 1000px;
-        padding: 40px;
+        width: 90%;
+        padding: 30px 20px;
     }
     
-    /* 大屏幕上按钮可以横向排列 */
-    .button-group {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: none;
+    h1 {
+        font-size: 1.8em;
     }
     
     .button {
-        min-width: 180px;
+        padding: 10px 0;
     }
 }
