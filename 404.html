@@ -1,68 +1,130 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>404</title>
+    <title>404 - 果园编程</title>
     <style>
+        :root {
+            --primary: #121212;
+            --secondary: #1DB954;
+            --text: #E0E0E0;
+            --text-secondary: #B3B3B3;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --button-bg: rgba(29, 185, 84, 0.8);
+        }
+        
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background: #808080;
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #000;
+            background-image: url('https://t.alcy.cc/pc');
+            background-size: cover;
+            background-attachment: fixed;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            color: var(--text);
         }
 
         .container {
             text-align: center;
-            background: #000000;
+            background: var(--card-bg);
             padding: 50px;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 800px;
+            margin: 20px;
         }
 
         h1 {
-            font-size: 60px;
-            margin-bottom: 10px;
-            color: #ffffff;
+            font-size: 72px;
+            margin: 0 0 20px;
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+            position: relative;
             animation: shake 0.5s ease-in-out infinite;
         }
-        h2 {
-            color: #ffffff;
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
         }
+
+        h2 {
+            color: var(--secondary);
+            margin-top: 30px;
+        }
+        
         p {
-            font-size: 20px;
-            color: #ffffff;
-            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .loading {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
         }
 
         .button {
             display: inline-block;
-            padding: 10px 20px;
-            background: #007BFF;
+            padding: 12px 25px;
+            background: var(--button-bg);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-            .button:hover {
-                background: #0056b3;
-            }
+        .button:hover {
+            background: #1ed760;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(29, 185, 84, 0.4);
+        }
 
         @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
 
-            25% {
-                transform: translateX(-10px);
+        @media (max-width: 768px) {
+            body {
+                background-image: url('https://t.alcy.cc/mp');
             }
-
-            75% {
-                transform: translateX(10px);
+            
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 60px;
+            }
+            
+            .button {
+                padding: 10px 20px;
             }
         }
     </style>
@@ -71,15 +133,20 @@
     <div class="container">
         <h1>404</h1>
         <p>当前 CDN 节点: <span id="cdn" class="loading">检测中...</span></p>
-        <p>哎呀，看起来你迷路了！可能是因为网址输入错误，或者你正在寻找的页面已经不存在。</p>
-        <h2>为什么会有这个错误</h2>
-        <p>404 not found，是HTTP对网页错误情况返回的一种状态码，当用户在浏览器中输入网址时，服务器会根据输入的地址判断是否有对应的网页信息，如果没有对应信息，说明用户输入的可能是一串无效的链接，服务器就会向用户返回404 not found状态码，告诉用户没有找到对应的网页信息。</p>
-        <p>这里有一些解决办法：</p>
-        <a href="https://guoyuancode.dpdns.org/home/" class="button">返回首页</a>
-        <a href="https://guoyuancode.dpdns.org/so/" class="button">返回果园搜搜</a>
-        <a href="https://server-status.guoyuancode.dpdns.org/" class="button">查看服务器状态</a>
-        <a href="javascript:history.back(-1);" class="button">返回上一页（测试）</a>
-
+        <p>哎呀，您访问的页面好像迷路了！可能是链接输入错误，或者这个页面已经不存在了。</p>
+        
+        <h2>错误原因说明</h2>
+        <p>404 错误表示服务器无法找到您请求的资源。这通常是由于：</p>
+        <p>• 网址输入错误<br>
+           • 页面已被移除或重命名<br>
+           • 链接已失效</p>
+        
+        <div class="button-group">
+            <a href="https://guoyuancode.dpdns.org/home/" class="button">返回首页</a>
+            <a href="https://guoyuancode.dpdns.org/so/" class="button">果园搜搜</a>
+            <a href="https://server-status.guoyuancode.dpdns.org/" class="button">服务器状态</a>
+            <a href="javascript:history.back(-1);" class="button">返回上一页</a>
+        </div>
     </div>
     <script src="/cdn.js"></script>
 </body>
