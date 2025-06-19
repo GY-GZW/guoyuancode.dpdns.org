@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水印生成工具 - 果园编程</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap">
+    <style>
+        :root {
+            --primary: #121212;
+            --secondary: #1DB954;
+            --accent: #E50914;
+            --light: #1E1E1E;
+            --dark: #000000;
+            --text: #E0E0E0;
+            --text-secondary: #B3B3B3;
+            --success: #1DB954;
+            --warning: #FFA500;
+            --card-bg: rgba(30, 30, 30, 0.7);
+            --button-bg: rgba(29, 185, 84, 0.8);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark);
+            min-height: 100vh;
+            background-image: url('https://t.alcy.cc/pc');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* 主容器 */
+        .main-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        /* 头部样式 */
+        .header {
+            background: linear-gradient(to right, #0c0d10, #1a1c25);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(211, 162, 103, 0.3);
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--secondary);
+            text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+        }
+
+        .home-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border: 1px solid rgba(29, 185, 84, 0.3);
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .home-link:hover {
+            background: rgba(29, 185, 84, 0.2);
+        }
+
+        /* 内容区域 */
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* 设置面板 */
+        .settings-panel {
+            flex: 1;
+            min-width: 320px;
+            padding: 30px;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .panel-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        /* 表单组 */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 1rem;
+            background: rgba(20, 20, 20, 0.7);
+            color: var(--text);
+            transition: border 0.3s;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        /* EXIF网格 */
+        .exif-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background: var(--button-bg);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--success);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(29, 185, 84, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(20, 25, 35, 0.9);
+            color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(30, 35, 45, 0.9);
+        }
+
+        /* 预览面板 */
+        .preview-panel {
+            flex: 1.5;
+            min-width: 400px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            padding: 15px;
+            border-radius: 6px;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 70vh;
+            display: none;
+            object-fit: contain;
+        }
+
+        .preview-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 40px;
+        }
+
+        /* 水印样式 */
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px 20px;
+            display: none;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .watermark-brand {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .watermark-model {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .watermark-info {
+            text-align: right;
+            color: var(--text);
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        /* 日期格式选项 */
+        .date-format-group {
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .date-format-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 错误提示 */
+        .error-message {
+            color: var(--accent);
+            margin-top: 8px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* 加载遮罩 */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 10, 10, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: var(--secondary);
+        }
+
+        /* 自定义型号容器 */
+        .custom-model-container {
+            margin-top: 15px;
+            display: none;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            body {
+                background-image: url('https://t.alcy.cc/mp');
+            }
+            
+            .main-container {
+                width: 95%;
+                margin: 15px auto;
+            }
+            
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .settings-panel {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .preview-panel {
+                min-width: 100%;
+            }
+            
+            .header-title {
+                font-size: 20px;
+            }
+            
+            .home-link {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1 class="header-title">水印生成工具</h1>
+            <a href="https://guoyuancode.dpdns.org/home/" class="home-link">
+                返回果园编程主站
+            </a>
+        </header>
+        
+        <div class="content-wrapper">
+            <section class="settings-panel">
+                <h2 class="panel-title">参数设置</h2>
+                
+                <div class="form-group">
+                    <label for="image-upload" class="form-label">上传图片</label>
+                    <input type="file" id="image-upload" class="form-input" accept="image/*">
+                    <div id="upload-error" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="camera-model" class="form-label">相机型号</label>
+                    <select id="camera-model" class="form-select">
+                        <option value="" disabled selected>请选择您的相机型号</option>
+                        <!-- 不到的相机系列 -->
+                        <optgroup label="SMART智能系列">
+                            <option value="Glyphix S1">Glyphix S1（基础入门款）</option>
+                            <option value="Glyphix S1 Stable">Glyphix S1 Stable（强化防抖功能）</option>
+                            <option value="Glyphix S2">Glyphix S2（二代性能升级）</option>
+                            <option value="Glyphix S3 4K HDR">Glyphix S3 4K HDR（4K高清+动态范围增强）</option>
+                        </optgroup>
+                        <optgroup label="PROFESSIONAL专业系列">
+                            <option value="Glyphix P1 Core">Glyphix P1 Core（专业基础款）</option>
+                            <option value="Glyphix P1 4K Cinema">Glyphix P1 4K Cinema（电影级色域）</option>
+                            <option value="Glyphix P1 Edition Leica">Glyphix P1 Edition Leica（徕卡限定版）</option>
+                            <option value="Glyphix P1 Edition Hasselblad">Glyphix P1 Edition Hasselblad（哈苏限定版）</option>
+                            <option value="Glyphix P3 DeepRaw HDR">Glyphix P3 DeepRaw HDR（RAW级处理+高动态范围）</option>
+                        </optgroup>
+                        <optgroup label="ULTIMATE旗舰系列">
+                            <option value="Glyphix U1 Dolby">Glyphix U1 Dolby（杜比影音旗舰）</option>
+                            <option value="Glyphix U1 8K Hyper">Glyphix U1 8K Hyper（8K超清性能怪兽）</option>
+                            <option value="Glyphix U1 Iris">Glyphix U1 Iris（可变光圈光学系统）</option>
+                            <option value="Glyphix U2 Neural">Glyphix U2 Neural（神经网络AI引擎）</option>
+                            <option value="Glyphix U3 Iris Tensor">Glyphix U3 Iris Tensor（光学+AI双擎旗舰）</option>
+                        </optgroup>
+
+                        <!-- 专业相机系列 -->
+                        <optgroup label="Glyphix系列">
+                            <option value="Glyphix S1">Glyphix S1（基础入门款）</option>
+                            <option value="Glyphix S1 Stable">Glyphix S1 Stable（强化防抖功能）</option>
+                            <option value="Glyphix S2">Glyphix S2（二代性能升级）</option>
+                            <option value="Glyphix S3 4K HDR">Glyphix S3 4K HDR（4K高清+动态范围增强）</option>
+                            <option value="Glyphix P1 Core">Glyphix P1 Core（专业基础款）</option>
+                            <option value="Glyphix P1 4K Cinema">Glyphix P1 4K Cinema（电影级色域）</option>
+                            <option value="Glyphix P3 DeepRaw HDR">Glyphix P3 DeepRaw HDR（RAW级处理+高动态范围）</option>
+                            <option value="Glyphix U1 8K Hyper">Glyphix U1 8K Hyper（8K超清性能怪兽）</option>
+                        </optgroup>
+                        
+                        <optgroup label="Canon系列">
+                            <option value="Canon EOS R5">EOS R5（8K全画幅）</option>
+                            <option value="Canon EOS R6 Mark II">EOS R6 Mark II（高速连拍）</option>
+                            <option value="Canon EOS 5D Mark IV">5D Mark IV（经典单反）</option>
+                            <option value="Canon EOS R3">EOS R3（旗舰运动相机）</option>
+                            <option value="Canon EOS R7">EOS R7（APS-C旗舰）</option>
+                        </optgroup>
+                        
+                        <optgroup label="Sony系列">
+                            <option value="Sony α7 IV">α7 IV（全能全画幅）</option>
+                            <option value="Sony α7R V">α7R V（6100万像素）</option>
+                            <option value="Sony α9 III">α9 III（全域快门）</option>
+                            <option value="Sony α1">α1（旗舰全能）</option>
+                            <option value="Sony ZV-E1">ZV-E1（视频旗舰）</option>
+                        </optgroup>
+                        
+                        <optgroup label="Nikon系列">
+                            <option value="Nikon Z9">Z9（旗舰无反）</option>
+                            <option value="Nikon Z8">Z8（高性能全幅）</option>
+                            <option value="Nikon D850">D850（经典单反）</option>
+                            <option value="Nikon Z fc">Z fc（复古设计）</option>
+                            <option value="Nikon Z50">Z50（入门APS-C）</option>
+                        </optgroup>
+                        
+                        <optgroup label="富士系列">
+                            <option value="富士 X-T5">X-T5（复古旗舰）</option>
+                            <option value="富士 GFX100 II">GFX100 II（中画幅）</option>
+                            <option value="富士 X-H2S">X-H2S（高速APS-C）</option>
+                            <option value="富士 X100V">X100V（经典旁轴）</option>
+                        </optgroup>
+                        
+                        <optgroup label="松下系列">
+                            <option value="松下 S5 IIX">S5 IIX（视频全能）</option>
+                            <option value="松下 GH6">GH6（M43视频旗舰）</option>
+                            <option value="松下 G9 II">G9 II（M43全能）</option>
+                        </optgroup>
+                        
+                        <!-- 手机品牌 -->
+                        <optgroup label="手机品牌">
+                            <option value="iPhone 15 Pro Max">iPhone 15 Pro Max</option>
+                            <option value="iPhone 14 Pro">iPhone 14 Pro</option>
+                            <option value="华为 Mate 60 Pro+">华为 Mate 60 Pro+</option>
+                            <option value="小米 14 Ultra">小米 14 Ultra</option>
+                            <option value="vivo X100 Pro">vivo X100 Pro</option>
+                            <option value="OPPO Find X6 Pro">OPPO Find X6 Pro</option>
+                        </optgroup>
+                        
+                        <option value="other">其他型号</option>
+                    </select>
+                    
+                    <div id="custom-model-container" class="custom-model-container">
+                        <label for="custom-model" class="form-label">自定义型号名称</label>
+                        <input type="text" id="custom-model" class="form-input" placeholder="输入您的相机型号">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">拍摄日期</label>
+                    <input type="date" id="photo-date" class="form-input">
+                    <div class="date-format-group">
+                        <div class="date-format-option">
+                            <input type="radio" id="format-slash" name="date-format" value="slash" checked>
+                            <label for="format-slash">YYYY/MM/DD</label>
+                        </div>
+                        <div class="date-format-option">
+                            <input type="radio" id="format-hyphen" name="date-format" value="hyphen">
+                            <label for="format-hyphen">YYYY-MM-DD</label>
+                        </div>
+                        <div class="date-format-option">
+                            <input type="radio" id="format-text" name="date-format" value="text">
+                            <label for="format-text">YYYY年MM月DD日</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">EXIF信息（带单位）</label>
+                    <div class="exif-grid">
+                        <div>
+                            <label for="focal-length" class="form-label">焦距</label>
+                            <input type="text" id="focal-length" class="form-input" placeholder="如: 120mm">
+                        </div>
+                        <div>
+                            <label for="aperture" class="form-label">光圈</label>
+                            <input type="text" id="aperture" class="form-input" placeholder="如: f/4.1">
+                        </div>
+                        <div>
+                            <label for="shutter" class="form-label">快门</label>
+                            <input type="text" id="shutter" class="form-input" placeholder="如: 1/100">
+                        </div>
+                        <div>
+                            <label for="iso" class="form-label">ISO</label>
+                            <input type="text" id="iso" class="form-input" placeholder="如: 90">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary" id="apply-btn">应用水印</button>
+                <button class="btn btn-secondary" id="download-btn">下载图片</button>
+            </section>
+            
+            <section class="preview-panel">
+                <h2 class="panel-title">效果预览</h2>
+                
+                <div class="preview-container">
+                    <div class="preview-placeholder" id="image-placeholder">
+                        <p>上传图片后预览效果</p>
+                    </div>
+                    
+                    <img id="preview" class="preview-image">
+                    
+                    <div class="watermark">
+                        <div class="watermark-brand">GOAM</div>
+                        <div class="watermark-model" id="model-preview">Glyphix P3 DeepRaw HDR</div>
+                        <div class="watermark-info">
+                            <div id="exif-preview">120mm f/4.1 1/100 ISO90</div>
+                            <div id="date-preview">2023/11/15</div>
+                        </div>
+                    </div>
+                    
+                    <div class="loading-overlay" id="loading-overlay">
+                        <p>正在生成图片...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取DOM元素
+            const imageUpload = document.getElementById('image-upload');
+            const previewImg = document.getElementById('preview');
+            const placeholder = document.getElementById('image-placeholder');
+            const watermark = document.querySelector('.watermark');
+            const modelPreview = document.getElementById('model-preview');
+            const exifPreview = document.getElementById('exif-preview');
+            const datePreview = document.getElementById('date-preview');
+            const applyBtn = document.getElementById('apply-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const errorMessage = document.getElementById('upload-error');
+            const cameraModelSelect = document.getElementById('camera-model');
+            const customModelContainer = document.getElementById('custom-model-container');
+            const customModelInput = document.getElementById('custom-model');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const dateFormatOptions = document.getElementsByName('date-format');
+            
+            // 设置默认日期
+            const today = new Date();
+            document.getElementById('photo-date').value = today.toISOString().split('T')[0];
+            
+            // 相机型号选择事件
+            cameraModelSelect.addEventListener('change', function() {
+                customModelContainer.style.display = this.value === 'other' ? 'block' : 'none';
+                updatePreview();
+            });
+            
+            // 图片上传处理
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                errorMessage.style.display = 'none';
+                
+                if (!file) return;
+                
+                if (!file.type.match('image.*')) {
+                    showError('请上传有效的图片文件');
+                    return;
+                }
+                
+                if (file.size > 10 * 1024 * 1024) {
+                    showError('图片大小不能超过10MB');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.onload = function() {
+                        previewImg.style.display = 'block';
+                        placeholder.style.display = 'none';
+                        watermark.style.display = 'flex';
+                        updatePreview();
+                    };
+                    previewImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            // 应用水印按钮
+            applyBtn.addEventListener('click', function() {
+                if (!previewImg.src || !previewImg.src.includes('data:')) {
+                    alert('请先上传图片');
+                    return;
+                }
+                updatePreview();
+            });
+            
+            // 更新预览函数
+            function updatePreview() {
+                if (!previewImg.src) return;
+                
+                // 处理相机型号
+                let model = cameraModelSelect.value === 'other' 
+                    ? (customModelInput.value.trim() || '其他型号')
+                    : (cameraModelSelect.value || 'Glyphix P3 DeepRaw HDR');
+                
+                // 更新预览显示
+                document.querySelector('.watermark-brand').textContent = 'GOAM';
+                modelPreview.textContent = model;
+                
+                // 处理EXIF信息
+                const focalLength = document.getElementById('focal-length').value || '120mm';
+                const aperture = document.getElementById('aperture').value || 'f/4.1';
+                const shutter = document.getElementById('shutter').value || '1/100';
+                const iso = document.getElementById('iso').value || '90';
+                
+                exifPreview.textContent = `${focalLength} ${aperture} ${shutter} ISO${iso}`;
+                
+                // 处理日期格式
+                const date = document.getElementById('photo-date').value;
+                if (date) {
+                    const dateObj = new Date(date);
+                    const year = dateObj.getFullYear();
+                    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+                    const day = String(dateObj.getDate()).padStart(2, '0');
+                    
+                    let selectedFormat = 'slash';
+                    dateFormatOptions.forEach(option => {
+                        if (option.checked) selectedFormat = option.value;
+                    });
+                    
+                    switch(selectedFormat) {
+                        case 'slash':
+                            datePreview.textContent = `${year}/${month}/${day}`;
+                            break;
+                        case 'hyphen':
+                            datePreview.textContent = `${year}-${month}-${day}`;
+                            break;
+                        case 'text':
+                            datePreview.textContent = dateObj.toLocaleDateString('zh-CN', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            });
+                            break;
+                        default:
+                            datePreview.textContent = `${year}/${month}/${day}`;
+                    }
+                }
+            }
+            
+            // 下载图片功能
+            downloadBtn.addEventListener('click', function() {
+                if (!previewImg.src || !previewImg.src.includes('data:')) {
+                    alert('请先上传图片并应用水印');
+                    return;
+                }
+                
+                loadingOverlay.style.display = 'flex';
+                
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    
+                    // 绘制原始图片
+                    ctx.drawImage(img, 0, 0);
+                    
+                    // 计算水印高度
+                    const watermarkHeight = Math.max(60, img.height * 0.1);
+                    
+                    // 绘制水印背景
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                    ctx.fillRect(0, img.height - watermarkHeight, img.width, watermarkHeight);
+                    
+                    // 设置文本样式
+                    ctx.textBaseline = 'middle';
+                    
+                    // 计算字体大小
+                    const fontSize = Math.max(20, img.width * 0.02);
+                    const largeFontSize = Math.max(28, img.width * 0.025);
+                    
+                    // 绘制品牌（左侧，绿色）
+                    ctx.fillStyle = '#1DB954';
+                    ctx.font = `bold ${largeFontSize}px Arial`;
+                    ctx.textAlign = 'left';
+                    ctx.fillText('GOAM', 30, img.height - watermarkHeight/2);
+                    
+                    // 绘制相机型号（左侧，白色）
+                    ctx.fillStyle = 'white';
+                    ctx.font = `bold ${largeFontSize}px Arial`;
+                    const brandWidth = ctx.measureText('GOAM').width;
+                    ctx.fillText(modelPreview.textContent, 30 + brandWidth + 10, img.height - watermarkHeight/2);
+                    
+                    // 绘制EXIF信息和日期（右侧）
+                    ctx.fillStyle = 'white';
+                    ctx.font = `500 ${fontSize}px Arial`;
+                    ctx.textAlign = 'right';
+                    
+                    // 修复重叠问题：增加行间距
+                    const lineHeight = fontSize * 1.5;
+                    const baseY = img.height - watermarkHeight/2 - lineHeight/2;
+                    
+                    ctx.fillText(exifPreview.textContent, img.width - 30, baseY);
+                    ctx.fillText(datePreview.textContent, img.width - 30, baseY + lineHeight);
+                    
+                    // 创建下载链接
+                    const link = document.createElement('a');
+                    link.download = 'watermarked_' + new Date().getTime() + '.png';
+                    link.href = canvas.toDataURL('image/png', 1.0);
+                    link.click();
+                    
+                    loadingOverlay.style.display = 'none';
+                };
+                img.src = previewImg.src;
+            });
+            
+            // 日期格式选项变化时更新预览
+            dateFormatOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    if (previewImg.src && previewImg.src.includes('data:')) {
+                        updatePreview();
+                    }
+                });
+            });
+            
+            // 其他输入变化时更新预览
+            document.querySelectorAll('#focal-length, #aperture, #shutter, #iso, #custom-model, #photo-date').forEach(input => {
+                input.addEventListener('input', function() {
+                    if (previewImg.src && previewImg.src.includes('data:')) {
+                        updatePreview();
+                    }
+                });
+            });
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+            
+            // 初始化
+            updatePreview();
+        });
+    </script>
+</body>
+</html>
