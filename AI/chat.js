@@ -13,7 +13,7 @@ const API_CONFIG = {
     kimi: {
         key: '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',
         url: 'https://openrouter.ai/api/v1/chat/completions',
-        model: 'moonshotai/moonlight-16b-a3b-instruct:free'
+        model: 'moonshotai/kimi-vl-a3b-thinking:free'
     }
 };
 
