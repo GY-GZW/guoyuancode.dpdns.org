@@ -15,4 +15,4 @@
 - 特别的，/my/目录下的文件遵循GPL-3.0许可证
 
 ## 联系方式
-- 邮箱：github@guoyuancode.dpdns.org
+- 邮箱：github@gystu.top
