@@ -4,120 +4,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="加入果园编程星球">
-    <title>加入果园编程星球</title>
+    <meta name="description" content="加入果园编程星球 - 共创数字世界">
+    <title>加入果园编程星球 | 共创数字世界</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #000000;
+        :root {
+            --primary: #121212;
+            --secondary: #1DB954;
+            --accent: #E50914;
+            --light: #1E1E1E;
+            --dark: #000000;
+            --text: #E0E0E0;
+            --text-secondary: #B3B3B3;
+            --success: #1DB954;
+            --warning: #FFA500;
+            --card-bg: rgba(30, 30, 30, 0.7);
+            --button-bg: rgba(29, 185, 84, 0.8);
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
+            font-family: 'Noto Sans SC', sans-serif;
             line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark);
+            min-height: 100vh;
+            background-image: url('https://t.alcy.cc/pc');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
-        p {
-            color: #ffffff;
-        }
+
         .container {
             width: 80%;
-            margin: 30px auto;
-            background: #4CAF50;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
         }
-        h1, h2, h3 {
-            text-align: center;
-            color: #f4f4f4;
-        }
+
         h1 {
-            margin-bottom: 20px;
+            color: var(--secondary);
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+            position: relative;
+            padding-bottom: 15px;
+            text-align: center;
         }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        h2, h3 {
+            color: var(--secondary);
+            font-size: 1.5em;
+            margin: 25px 0 15px;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        h2::before, h3::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 60%;
+            width: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        p {
+            color: var(--text);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
         .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin: 30px 0;
         }
+
         .logo img {
-            max-width: 100px; /* 根据实际logo大小调整 */
-            display: block;
-            margin: 0 auto;
+            max-width: 120px;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid var(--secondary);
+            box-shadow: 0 0 20px rgba(29, 185, 84, 0.5);
+            transition: transform 0.3s;
         }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
         .important-notice {
-            background: #000000;
-            padding: 10px;
-            border-left: 5px solid #ffcc00;
-            margin-bottom: 20px;
+            background: rgba(255, 165, 0, 0.15);
+            padding: 15px;
+            border-left: 4px solid var(--warning);
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
         }
-        .section {
-            margin-bottom: 20px;
+
+        .important-notice p {
+            color: var(--warning);
+            font-weight: 500;
+            margin: 0;
         }
-        .section-title {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
+
         ul {
             padding-left: 20px;
+            margin: 15px 0;
         }
+
         li {
-            color: #ffffff;
-            margin-bottom: 5px;
+            color: var(--text);
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px;
         }
+
+        li::before {
+            content: "•";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-bottom: 1px dashed transparent;
+        }
+
+        a:hover {
+            color: #1ed760;
+            border-bottom-color: var(--secondary);
+        }
+
         .contact-info {
             list-style: none;
             padding: 0;
         }
+
         .contact-info li {
-            margin-bottom: 10px;
+            padding-left: 0;
+        }
+
+        .contact-info li::before {
+            display: none;
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 300px;
+            margin: 30px auto;
+        }
+
+        .button {
+            display: block;
+            padding: 12px 0;
+            background: var(--button-bg);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .button:hover {
+            background: #1ed760;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(29, 185, 84, 0.4);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                background-image: url('https://t.alcy.cc/mp');
+            }
+            
+            .container {
+                width: 90%;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2, h3 {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>欢迎加入果园编程星球！</h1>
+        <h1>欢迎加入果园编程星球</h1>
+        <p style="text-align: center; color: var(--text-secondary);">共创数字世界的未来</p>
+        
         <div class="logo">
-            <img src="/logo.png" alt="果园星球LOGO"> <!-- 请替换为果园星球的LOGO图片链接 -->
+            <img src="/logo.png" alt="果园编程星球LOGO">
         </div>
+        
         <div class="important-notice">
-            <p>重要提示：请不要随意加入星球，以避免不必要的困扰，如果想要加入，请先找果园或IW大使说明情况and你想加入的职位。</p>
+            <p>重要提示：加入前请先联系果园或IW大使说明您的意向和申请职位，以确保最佳匹配。</p>
         </div>
+        
         <div class="section">
-            <h2 class="section-title">友情链接</h2>
+            <h2>友情链接</h2>
             <ul>
-                <li><a href="https://guoyuangzs.dpdns.org/home/">果园的官网</a></li>
-                <li><a href="https://github.com/gy216">果园的Github</a></li>
-                <li><a href="https://space.bilibili.com/1203461262">果园的B站</a></li>
-                <li><a href="https://gystu.top">上古米歇尔-果园-FD-工作的官网</a></li>
-                <li><a href="https://github.com/gy-gzw">上古米歇尔-果园-FD-工作的Github</a></li>
-                <li><a href="https://space.bilibili.com/3546584528718081">上古米歇尔-果园-FD-工作的B站</a></li>
+                <li><a href="https://guoyuangzs.dpdns.org/home/" target="_blank">果园的官方网站</a></li>
+                <li><a href="https://github.com/gy216" target="_blank">果园的GitHub主页</a></li>
+                <li><a href="https://space.bilibili.com/1203461262" target="_blank">果园的Bilibili空间</a></li>
+                <li><a href="https://gystu.top" target="_blank">上古米歇尔-果园工作室官网</a></li>
+                <li><a href="https://github.com/gy-gzw" target="_blank">上古米歇尔-果园工作室-GitHub</a></li>
+                <li><a href="https://space.bilibili.com/3546584528718081" target="_blank">上古米歇尔-果园工作室-Bilibili</a></li>
             </ul>
         </div>
+        
         <div class="section">
-            <h2 class="section-title">星球新信息</h2>
-            <p>我们正在构思大作：大作名——《物理旅行者》。</p>
-            <p>我们的作品没有做完，上了潜力，如果你想加入我们的协作，请找到下面的“联系方式”，加入我们的QQ群。</p>
+            <h2>星球动态</h2>
+            <p>我们正在开发全新项目：<strong>《物理旅行者》</strong> - 一款融合物理知识与创意编程的互动作品。</p>
+            <p>项目已展现出巨大潜力，诚邀志同道合的伙伴加入我们的创作团队。</p>
         </div>
+        
         <div class="section">
-            <h2 class="section-title">招人了！</h2>
+            <h2>招募英才</h2>
             <ul>
-                <li><strong>程序：</strong>会scratch，最好会ccw的拓展，并有5个作品。</li>
-                <li><strong>主力：</strong>会scratch，最好会ccw的拓展，并有3个作品，一个潜力。</li>
-                <li><strong>美工：</strong>最好学过画画，有美工基础。</li>
-                <li><strong>测试：</strong>能好好测试，不能把作品积木（或代码）搞乱，只能听从程序或美工的建议，测试MMO，最好懂scratch。</li>
+                <li><strong>程序员：</strong>熟练掌握Scratch，了解CCW扩展功能，有5个以上完整作品。</li>
+                <li><strong>主力开发：</strong>熟练使用Scratch，了解CCW扩展，有3个以上作品，其中至少1个潜力作品。</li>
+                <li><strong>美术设计：</strong>具备美术基础，有绘画或数字艺术经验。</li>
+                <li><strong>测试工程师：</strong>细致耐心，能严格遵循测试规范，了解Scratch基础，有MMO测试经验优先。</li>
             </ul>
         </div>
-        <div class="section contact-info">
-            <h2 class="section-title">联系方式</h2>
-            <li>QQ群：749914521（加群后请改备注为你的共创名字）</li>
-        </div>
+        
         <div class="section">
-            <h2 class="section-title">星球福利</h2>
-            <p>你必须要有作品</p>
-            <ul>
-                <li>积极发表上传作品：10金币</li>
-                <li>咸鱼：1金币</li>
+            <h2>联系方式</h2>
+            <ul class="contact-info">
+                <li>QQ群：749914521（加入后请修改备注为您的共创ID）</li>
             </ul>
-            <p>感谢你的加入：你的加入将为这个星球增加一位新的公民，感谢你的贡献！</p>
+            
+            <div class="button-group">
+                <a href="https://qm.qq.com/cgi-bin/qm/qr?k=r4O2SJoZzrFP-l4xPEf1n8zNnClmR2-r&jump_from=webapi&authKey=8ovyfZ5ja+CFMOuMmA8fwnL3Wbt93e56HZiMk1lWRvYzQP7W3w4JN4tfvK/bmi74" class="button" target="_blank">立即加入QQ群</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>星球福利</h2>
+            <p>我们鼓励成员持续创作优质内容，为此设立了以下奖励机制：</p>
+            <ul>
+                <li>积极发布优质作品：奖励10金币</li>
+                <li>参与日常维护：奖励1金币</li>
+            </ul>
+            <p style="font-style: italic; color: var(--text-secondary);">您的加入将为星球注入新的活力，期待与您共同创造精彩！</p>
         </div>
     </div>
+    
     <script src="/caidan.js"></script>
 </body>
 </html>
