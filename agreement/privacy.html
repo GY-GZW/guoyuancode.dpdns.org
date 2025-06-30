@@ -17,92 +17,89 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             overflow: hidden;
         }
         .container {
-            background-color: #000000;
+            background-color: #1a1a1a;
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+            box-shadow: 0 4px 20px rgba(0, 150, 255, 0.2);
             max-width: 800px;
-            width: 100%;
+            width: 90%;
             position: relative;
             overflow-y: auto;
             max-height: 90vh;
-            animation: fadeIn 1s ease-out, scaleIn 1s ease-out;
+            border: 1px solid #333;
+            animation: fadeIn 1s ease-out;
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes scaleIn {
-            from { transform: scale(0.9); }
-            to { transform: scale(1); }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         h1 {
             text-align: center;
-            margin-bottom: 20px;
-            color: #ffffff;
-            font-size: 1.8em;
-            animation: rotateIn 1s ease-out;
+            margin-bottom: 25px;
+            color: #4dabf7;
+            font-size: 2em;
+            position: relative;
         }
-        @keyframes rotateIn {
-            from { transform: rotate(-10deg); }
-            to { transform: rotate(0); }
+        h1:after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #4dabf7, transparent);
+            margin: 10px auto 0;
         }
         h2 {
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: #ffffff;
-            font-size: 1.4em;
-            animation: slideInLeft 1s ease-out;
-        }
-        @keyframes slideInLeft {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
-        }
-        p {
-            line-height: 1.6;
+            margin-top: 30px;
             margin-bottom: 15px;
-            color: #ffffff;
-            font-size: 1em;
-            animation: slideInRight 1s ease-out;
+            color: #74c0fc;
+            font-size: 1.4em;
+            border-left: 4px solid #4dabf7;
+            padding-left: 10px;
         }
-        @keyframes slideInRight {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
+        p, li {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #e9ecef;
+            font-size: 1em;
         }
         .highlight {
-            color: #0056b3;
-            font-weight: bold;
+            color: #4dabf7;
+            font-weight: 500;
+        }
+        a {
+            color: #74c0fc;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        a:hover {
+            color: #a5d8ff;
+            text-decoration: underline;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .update-info {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #333;
         }
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 25px;
+                width: 95%;
             }
             h1 {
-                font-size: 1.5em;
+                font-size: 1.6em;
             }
             h2 {
-                font-size: 1.2em;
-            }
-            p {
-                font-size: 0.9em;
-            }
-        }
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px;
-            }
-            h1 {
                 font-size: 1.3em;
-            }
-            h2 {
-                font-size: 1.1em;
-            }
-            p {
-                font-size: 0.85em;
             }
         }
     </style>
@@ -110,28 +107,82 @@
 <body>
     <div class="container">
         <h1>果园编程隐私政策</h1>
-        <p><span class="highlight">开发方</span>：果园编程工作室</p>
-        <p><span class="highlight">用户</span>：愿意接受本隐私政策所有条款并注册、使用我们的果园编程产品的个人或实体。</p>
+        
+        <p><span class="highlight">生效日期</span>：2025年6月30日</p>
+        <p><span class="highlight">最后更新</span>：2025年6月30日</p>
+        
         <h2>一、信息收集</h2>
-        <p>我们收集的信息包括但不限于用户名、电子邮件地址、IP地址等，用于提供服务和改进用户体验。我们仅在履行服务所必需的范围内收集个人信息，并且会确保收集过程的透明性和合法性。</p>
-        <h2>二、信息使用</h2>
-        <p>我们使用收集的信息来提供、维护、保护和改进我们的服务，以及开发新服务。我们承诺不会将您的个人信息用于任何与服务无关的目的，并且会采取适当措施保护您的信息安全。</p>
-        <h2>三、信息共享</h2>
-        <p>我们不会与外部公司、组织或个人共享用户的个人信息，除非获得用户的明确同意或法律要求。在某些情况下，我们可能会根据法律程序、法院命令或政府要求披露个人信息。</p>
-        <h2>四、信息安全</h2>
-        <p>我们采取各种安全措施来保护用户的信息，防止未经授权的访问、使用或泄露。这些措施包括但不限于数据加密、公钥加密技术、访问控制和定期的安全审计。我们承诺会持续改进我们的安全措施，以应对不断变化的安全威胁。</p>
-        <h2>五、隐私政策的变更</h2>
-        <p>我们可能会不时更新本隐私政策。我们会在此页面上发布任何隐私政策的变更，并更新修订日期。我们鼓励用户定期查看隐私政策，以了解任何变更。</p>
-        <h2>六、联系我们</h2>
-        <p>如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
-        <p>室长电子邮件：386498317@qq.com</p>
-        <p>技术支持电子邮件：2373460868@qq.com</p>
-        <p>QQ群：749914521</p>
-        <p>感谢您的阅读和理解。希望您在使用果园编程产品时，能够遵守本隐私政策的各项规定，享受编程的乐趣。</p>
-        <p style="text-align: right;">果园编程工作室</p>
-        <p style="text-align: right;">更新于：2024 年 10 月 5 日星期六</p>
-        <p style="text-align: right;">适用版本：果园编程产品 ALL</p>
-        <p style="text-align: right;">网站：<a href="https://gystu.top">https://gystu.top</a></p>
+        <p>我们收集的信息包括但不限于以下类型：</p>
+        <ul>
+            <li><span class="highlight">账户信息</span>：用户名、电子邮件地址等注册信息</li>
+            <li><span class="highlight">使用数据</span>：IP地址（匿名化处理）、浏览器类型、设备信息</li>
+            <li><span class="highlight">分析数据</span>：通过Cloudflare Web Analytics收集的匿名化网站使用指标</li>
+            <li><span class="highlight">技术数据</span>：Cookies和类似技术（仅用于必要功能）</li>
+        </ul>
+        
+        <h2>二、分析工具的使用</h2>
+        <p>我们使用Cloudflare Web Analytics来了解网站使用情况，该服务具有以下隐私保护特性：</p>
+        <ul>
+            <li>不收集个人身份信息（如完整IP地址、用户ID等）</li>
+            <li>不使用追踪Cookies或跨站标识符</li>
+            <li>所有数据以聚合形式处理，无法关联到特定个人</li>
+            <li>数据可能通过Cloudflare全球网络（含美国）处理，但因匿名化不构成个人数据传输风险</li>
+        </ul>
+        <p>您可以通过浏览器扩展屏蔽<code>static.cloudflareinsights.com</code>来避免被统计。</p>
+        
+        <h2>三、信息使用</h2>
+        <p>我们仅将收集的信息用于以下目的：</p>
+        <ul>
+            <li>提供、维护和改进我们的服务</li>
+            <li>分析服务使用情况以优化用户体验</li>
+            <li>保障服务安全和防范滥用行为</li>
+            <li>履行法律义务和解决纠纷</li>
+        </ul>
+        
+        <h2>四、数据共享与披露</h2>
+        <p>我们仅在以下情况下共享信息：</p>
+        <ul>
+            <li>获得您的明确同意</li>
+            <li>为提供您要求的服务而必须与第三方合作时</li>
+            <li>根据法律要求或响应合法政府请求时</li>
+            <li>保护果园编程、用户或公众的权利、财产或安全时</li>
+        </ul>
+        
+        <h2>五、数据安全</h2>
+        <p>我们采取行业标准的安全措施保护您的信息：</p>
+        <ul>
+            <li>数据传输使用SSL/TLS加密</li>
+            <li>敏感信息存储采用加密技术</li>
+            <li>定期安全审计和漏洞扫描</li>
+            <li>严格的内部访问控制</li>
+        </ul>
+        
+        <h2>六、您的权利</h2>
+        <p>根据适用法律，您可能享有以下权利：</p>
+        <ul>
+            <li>访问、更正或删除您的个人信息</li>
+            <li>限制或反对特定数据处理</li>
+            <li>获取数据可移植性</li>
+            <li>撤回已同意的处理</li>
+        </ul>
+        <p>如需行使这些权利，请通过下文联系方式与我们联系。</p>
+        
+        <h2>七、政策变更</h2>
+        <p>我们可能不定期更新本政策。重大变更将通过网站公告或电子邮件通知。继续使用服务视为接受更新后的政策。</p>
+        
+        <h2>八、联系我们</h2>
+        <p>如有任何隐私相关问题，请通过以下方式联系：</p>
+        <ul>
+            <li>室长邮箱：<a href="mailto:386498317@qq.com">386498317@qq.com</a></li>
+            <li>技术支持：<a href="mailto:2373460868@qq.com">2373460868@qq.com</a></li>
+            <li>QQ群：<a href="https://jq.qq.com/?_wv=1027&k=5vJgTpJd" target="_blank">749914521</a></li>
+            <li>官方网站：<a href="https://gystu.top" target="_blank">https://gystu.top</a></li>
+        </ul>
+        
+        <div class="update-info">
+            <p>果园编程工作室 谨上</p>
+            <p>©2025 果园编程 版权所有</p>
+        </div>
     </div>
 </body>
 </html>
